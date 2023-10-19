@@ -43,7 +43,7 @@ public class Main {
 					state.close();
 				}
 				try (PreparedStatement state = conexion.prepareStatement(linea3)) {
-					
+					constraint nombreCampo check (nombrecampo>0);
 					state.setInt(1, 4);
 					state.setInt(2, 1);
 					state.setInt(3, 0);
