@@ -20,6 +20,7 @@ public class Main {
 		lista.add(producto2);
 		lista.add(producto3);
 
+		//Serializar un objeto
 		ObjectOutputStream output = null;
 		try (FileOutputStream fos = new FileOutputStream(".\\fichero.dat")) {
 			output = new ObjectOutputStream(fos);
@@ -30,6 +31,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		//Deserializar un objeto.
 		ObjectInputStream input;
 		try {
 			input = new ObjectInputStream(new FileInputStream(".\\fichero.dat"));
