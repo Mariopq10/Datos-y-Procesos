@@ -67,5 +67,42 @@ public class Main {
 			System.err.println("Error");
 		}
 	}
+	
+	/*
+	Escribir ficheros de texto plano
+	FileWriter fichero = null;
+	PrintWriter escritor = null;
+	try {
+	fichero = new FileWriter("archivo.txt");
+	escritor = new PrintWriter(fichero) ;
+	escritor.println("Esto es una linea del fichero");
+	} catch (IOException ioe) {
+	ioe.printStackTrace() ;
+	} finally {
+	if (fichero != null)
+	try {
+	fichero.close();
+	} catch (IOException ioe) { . . . }
+	}
+	
+	Leer ficheros de texto plano
+	File fichero = null;
+	FileReader lector = null;
+	BufferedReader buffer = null;
+	try {
+	buffer = new BufferedReader(new FileReader(new File("archivo.txt")));
+	String linea = null;
+	while ((linea = buffer.readLine()) != null)
+	System.out.println(linea);
+	} catch (FileNotFoundException fnfe) {
+	fnfe.printStackTrace();
+	} catch (IOException ioe) {
+	ioe.printStackTrace();
+	} finally {
+	if (buffer != null)
+	try {
+	buffer.close();
+	} catch (IOException ioe) { . . . }
+	}*/
 
 }

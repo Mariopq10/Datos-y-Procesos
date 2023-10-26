@@ -53,6 +53,34 @@ public class Main {
 		 * 
 		 * }
 		 */
+		
+		
+		
+		//Opcion Adolfo
+		/*Properties configuracion = new Properties();
+
+		try {
+
+		  configuracion.load(new FileInputStream("configuracion.props"));
+
+		  usuario = configuracion.getProperty("user");
+
+		  password = configuracion.getProperty("password");
+
+		  servidor = configuracion.getProperty("server");
+
+		  puerto = Integer.valueOf(configuration.getProperty("port"));
+
+		} catch (FileNotFoundException fnfe ) { 
+
+		  fnfe.printStackTrace();
+
+		} catch (IOException ioe) { 
+
+		  ioe.printStackTrace();
+
+		}*/
+		
 
 	}
 
