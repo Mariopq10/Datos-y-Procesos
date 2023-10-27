@@ -32,21 +32,18 @@ public class Productor extends Thread {
 		return articulo;
 	}
 
-	public void put() {
-		try {
-			wait();
-
-		} catch (Exception e) {
-		}
+	public synchronized void put() throws InterruptedException {
 		buffer.getLista().add(articuloAleatorio());
+		Thread.sleep(500);
+		notifyAll();
 	}
 
 	@Override
 	public void run() {
 		try {
-			while (buffer.getLista().size() < 100) {
+			while (buffer.getLista().size() < 5) {
 				put();
-				Thread.sleep(1500);
+				
 				buffer.obtenerLista();
 			}
 

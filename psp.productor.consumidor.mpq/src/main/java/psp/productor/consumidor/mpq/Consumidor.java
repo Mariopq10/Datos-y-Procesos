@@ -29,9 +29,10 @@ public class Consumidor extends Thread {
 		return articulo;
 	}
 
-	public void get() {
+	public synchronized void get() throws InterruptedException {
 		try {
 			wait();
+			System.out.println("aa");
 		} catch (Exception e) {
 		}
 		String art = articuloAleatorio();
@@ -41,21 +42,22 @@ public class Consumidor extends Thread {
 		} else {
 			System.out.println("No hay " + art + " , no se ha consumido nada");
 		}
-
+		Thread.sleep(2000);
+		notifyAll();		
 	}
 
 	@Override
 	public void run() {
-		try {
-			System.out.println("");
-			while (buffer.getLista().size() > 0) {
-				get();
-				Thread.sleep(2000);
-			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+				try {
+					System.out.println("aaaaa");
+					get();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
 	}
 
 	@Override
