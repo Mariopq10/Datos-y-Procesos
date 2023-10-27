@@ -39,7 +39,7 @@ public class Consumidor extends Thread {
 			buffer.getLista().remove(art);
 			System.out.println("Se consumio un/una: " + art + "\n");
 		} else {
-			System.out.println("No hay " + art + " , no se ha consumido nada\n");
+			System.out.println("No hay " + art + " , no se ha consumido nada");
 		}
 
 	}
@@ -47,9 +47,10 @@ public class Consumidor extends Thread {
 	@Override
 	public void run() {
 		try {
+			System.out.println("");
 			while (buffer.getLista().size() > 0) {
 				get();
-				Thread.sleep(1500);
+				Thread.sleep(2000);
 			}
 
 		} catch (Exception e) {

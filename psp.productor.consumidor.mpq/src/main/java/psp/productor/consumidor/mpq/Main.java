@@ -10,7 +10,8 @@ public class Main {
 		Buffer buffer = new Buffer(lista);
 		Productor productor = new Productor("Productor", buffer);
 		Consumidor consumidor = new Consumidor("Consumidor", buffer);
-
+		
+		
 		productor.start();
 		consumidor.start();
 
