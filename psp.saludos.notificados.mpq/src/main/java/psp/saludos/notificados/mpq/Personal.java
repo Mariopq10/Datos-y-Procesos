@@ -39,7 +39,6 @@ public class Personal extends Thread {
 
 		}
 	}
-
 	@Override
 	public String toString() {
 		return "Personal [nombre=" + nombre + ", jefe=" + jefe + "]";
