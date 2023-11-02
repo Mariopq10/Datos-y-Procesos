@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-configuration>
+ <session-factory>
+ <property name="hibernate.connection.driver_class">
+com.mysql.jdbc.Driver
+</property>
+ <property name="hibernate.connection.url">
+jdbc:mysql://192.168.6.221/3306/mario
+</property>
+ <property name="hibernate.connection.username">
+mario
+</property>
+ <property name="hibernate.connection.password">
+12345
+</property>
+ <property name="hibernate.dialect">
+org.hibernate.dialect.MySQLDialect
+</property>
+ </session-factory>
+</hibernate-configuration>
