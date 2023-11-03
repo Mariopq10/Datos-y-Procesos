@@ -14,9 +14,12 @@ public class Main {
 		byte iterador = 0;
 
 		for (byte i = 0; i < lista.size(); i++) {
-			Alumno alumno = new Alumno(lista.get(i), comidasHechas);
+			Alumno alumno = new Alumno(lista.get(i));
 			listado.add(alumno);
-			alumno.start();
+			//alumno.start();
+		}
+		for (byte i = 0; i < 2; i++) {
+			listado.get(i).start();
 		}
 
 	}

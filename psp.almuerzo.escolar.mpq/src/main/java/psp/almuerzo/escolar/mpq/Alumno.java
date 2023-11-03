@@ -1,32 +1,46 @@
 package psp.almuerzo.escolar.mpq;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Alumno extends Thread {
 	private String nombre;
-	private String[] comidas;
+	private ArrayList comidas=new ArrayList<>(
+			Arrays.asList("Patata","Pasta","Chocolate"));
+	private int tiempo;
 
+	public Alumno(String nombre,int tiempo) {
+		super();
+		this.nombre = nombre;
+		this.tiempo = tiempo;
+	}
+	
 	public Alumno(String nombre) {
 		super();
 		this.nombre = nombre;
+		this.comidas = comidas;
+		Random random = new Random();
+		int numeroAleatorio = random.nextInt(10);
+		this.tiempo = numeroAleatorio;
 	}
 
-	public String getComidas() {
-		String lista = "";
-		for (byte i = 0; i < comidas.length; i++) {
-			lista += comidas[i];
-		}
-		return lista;
+
+
+	public ArrayList getComidas() {
+		return comidas;
 	}
 
-	public void setComidas(String[] comidas) {
+	public void setComidas(ArrayList comidas) {
 		this.comidas = comidas;
 	}
 
-	public Alumno(String nombre, String[] comidas) {
-		super();
-		this.nombre = nombre;
-		this.comidas = comidas;
+	public int getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
 	}
 
 	public String getNombre() {
@@ -41,10 +55,10 @@ public class Alumno extends Thread {
 		String[] lista = new String[] { "Patata", "Pasta", "Chocolate" };
 		String articulo;
 		Random random = new Random();
-		int numeroAleatorio = random.nextInt(lista.length);
-		articulo = lista[numeroAleatorio];
+		int numeroAleatorio = random.nextInt(alumno.getComidas().size());
+		articulo = (String) alumno.getComidas().get(numeroAleatorio);
 		if (alumno.getComidas().contains(articulo)) {
-			this.articuloAleatorio(alumno);
+ 			alumno.getComidas().remove(articulo);
 		} else {
 			return articulo;
 		}
@@ -59,7 +73,7 @@ public class Alumno extends Thread {
 			try {
 				System.out.println(this.nombre + " empieza la merienda de " + articuloAleatorio(this));
 
-				Thread.sleep(1500);
+				Thread.sleep(this.tiempo*1500);
 				System.out.println(this.nombre + " termino de comer");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
