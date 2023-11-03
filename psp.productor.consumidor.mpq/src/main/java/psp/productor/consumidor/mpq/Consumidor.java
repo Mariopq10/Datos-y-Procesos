@@ -32,7 +32,7 @@ public class Consumidor extends Thread {
 	public synchronized void get() throws InterruptedException {
 		try {
 			wait();
-			System.out.println("aa");
+			System.out.println("");
 		} catch (Exception e) {
 		}
 		String art = articuloAleatorio();
@@ -50,7 +50,7 @@ public class Consumidor extends Thread {
 	public void run() {
 
 				try {
-					System.out.println("aaaaa");
+					System.out.println("");
 					get();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
