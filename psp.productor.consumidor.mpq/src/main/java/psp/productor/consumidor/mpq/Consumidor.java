@@ -34,15 +34,16 @@ public class Consumidor extends Thread {
 			wait();
 			System.out.println("");
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		String art = articuloAleatorio();
 		if (buffer.getLista().contains(art)) {
 			buffer.getLista().remove(art);
-			System.out.println("Se consumio un/una: " + art + "\n");
+			System.out.println("Se consumio un/una: " + art );
 		} else {
 			System.out.println("No hay " + art + " , no se ha consumido nada");
 		}
-		Thread.sleep(2000);
+		Thread.sleep(1500);
 		notifyAll();		
 	}
 

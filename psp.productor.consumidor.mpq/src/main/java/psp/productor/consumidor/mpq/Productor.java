@@ -34,14 +34,14 @@ public class Productor extends Thread {
 
 	public synchronized void put() throws InterruptedException {
 		buffer.getLista().add(articuloAleatorio());
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		notifyAll();
 	}
 
 	@Override
 	public void run() {
 		try {
-			while (buffer.getLista().size() < 5) {
+			while (buffer.getLista().size() < 7) {
 				put();
 				
 				buffer.obtenerLista();

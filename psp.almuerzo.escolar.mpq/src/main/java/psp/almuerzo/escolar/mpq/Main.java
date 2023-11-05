@@ -18,7 +18,7 @@ public class Main {
 			listado.add(alumno);
 			//alumno.start();
 		}
-		for (byte i = 0; i < 2; i++) {
+		for (byte i = 0; i < listado.size(); i++) {
 			listado.get(i).start();
 		}
 
