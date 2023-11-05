@@ -7,7 +7,17 @@ import java.util.Arrays;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-
+		/*
+		 * Crear procesos con ProcessBuilder
+		 * 
+		 * Mediante un ArrayList se le envía el fichero y los argumentos, por ejemplo el
+		 * block de notas con un fichero de texto
+		 * 
+		 * Espera 10 segundos y destruimos el proceso creado
+		 * pues 
+		 * En otro proceso abrimos el navegador con la página de inicio del instituto
+		 * 
+		 */
 		Process proceso = null;
 		ArrayList<String> lista = new ArrayList();
 		lista.add("notepad.exe C:\\\\Users\\\\DAM2\\\\eclipse-workspace\\\\creacion.proceso.mpq\\\\listado.txt");
@@ -23,12 +33,12 @@ public class Main {
 		try {
 			proceso = pb.start();
 			Thread.sleep(100);
-			
+
 			int retorno = proceso.waitFor(); // El padre espera bloqueado hasta que el hijo finalice su ejecución,
 												// volviendo inmediatamente si el hijo ha finalizado con
 												// anterioridad o si alguien le interrumpe
 			System.out.println("El proceso " + Arrays.toString(args) + " acabó con el valor " + retorno);
-			//proceso = chrome.start();
+			// proceso = chrome.start();
 
 		} catch (IOException ex) {
 			System.err.println("Error");
