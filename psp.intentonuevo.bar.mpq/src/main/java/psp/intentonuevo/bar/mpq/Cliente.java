@@ -1,6 +1,6 @@
 package psp.intentonuevo.bar.mpq;
 
-public class Cliente extends Thread{
+public class Cliente implements Runnable{
 	private String nombre;
 	private String comanda;
 	private Libreta libreta;
@@ -10,6 +10,12 @@ public class Cliente extends Thread{
 		this.nombre = nombre;
 		this.comanda = comanda;
 		this.libreta = libreta;
+	}
+
+	@Override
+	public void run() {
+		
+		
 	}
 	
 	

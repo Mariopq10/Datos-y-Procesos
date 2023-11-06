@@ -1,6 +1,6 @@
 package psp.intentonuevo.bar.mpq;
 
-public class Camarero extends Thread{
+public class Camarero implements Runnable{
 	private boolean estaAtendiendo;
 	private Libreta libreta;
 	
@@ -9,6 +9,13 @@ public class Camarero extends Thread{
 		super();
 		this.estaAtendiendo = estaAtendiendo;
 		this.libreta = libreta;
+	}
+
+
+	@Override
+	public void run() {
+		
+		
 	}
 	
 	
