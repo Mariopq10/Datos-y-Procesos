@@ -51,20 +51,18 @@ public class Cliente extends Thread {
 			System.out.println("Camarero ocupado");
 			wait();
 		} else {
-			this.setCamarero(camarero);
-			
+
 			camarero.atenderCliente(this);
 			System.out.println(this.nombre + " pide al camarero: " + this.comanda);
 
 			this.camarero.setAtendiendo(false);
-			notifyAll();
+
 		}
 
 	}
 
 	@Override
 	public void run() {
-
 		try {
 			System.out.println(this.nombre + " llama al camarero esperando a que lo atienda");
 			this.pedirComanda(this.camarero);

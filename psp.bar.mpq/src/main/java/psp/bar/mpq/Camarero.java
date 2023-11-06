@@ -29,11 +29,13 @@ public class Camarero extends Thread {
 	}
 
 	public synchronized void atenderCliente(Cliente cliente) throws InterruptedException {
+		
 		System.out.println("Camarero atiende a "+cliente.getNombre());
 		this.setAtendiendo(true);
 		this.clientesAtendidos.add(cliente);
 		Thread.sleep(2000);
 		System.out.println("Camarero ha atendido a "+ cliente.getNombre());
+		notifyAll();
 		
 	}
 
