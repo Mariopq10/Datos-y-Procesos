@@ -30,35 +30,34 @@ public class Consumidor extends Thread {
 	}
 
 	public synchronized void get() throws InterruptedException {
-		try {
-			wait();
-			System.out.println("");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 		String art = articuloAleatorio();
 		if (buffer.getLista().contains(art)) {
 			buffer.getLista().remove(art);
-			System.out.println("Se consumio un/una: " + art );
+			System.out.println("Se consumio un/una: " + art);
 		} else {
 			System.out.println("No hay " + art + " , no se ha consumido nada");
 		}
-		Thread.sleep(1500);
-		notifyAll();		
+		Thread.sleep(200);
+
 	}
 
 	@Override
 	public void run() {
 
-				try {
-					System.out.println("");
+		while (true) {
+			try {
+				Thread.sleep(2000);
+				if (this.buffer.getLista().size() == 0) {
+					wait();
+				} else {
 					get();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-				
-			
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 	@Override

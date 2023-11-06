@@ -33,9 +33,11 @@ public class Productor extends Thread {
 	}
 
 	public synchronized void put() throws InterruptedException {
+		
 		buffer.getLista().add(articuloAleatorio());
 		Thread.sleep(1000);
-		notifyAll();
+		notify();
+	
 	}
 
 	@Override
@@ -43,7 +45,6 @@ public class Productor extends Thread {
 		try {
 			while (buffer.getLista().size() < 7) {
 				put();
-				
 				buffer.obtenerLista();
 			}
 
