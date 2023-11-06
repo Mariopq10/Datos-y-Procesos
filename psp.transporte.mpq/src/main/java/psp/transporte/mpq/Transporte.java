@@ -16,11 +16,6 @@ public class Transporte implements Runnable {
 	}
 
 
-
-
-
-
-
 	public void run() {
 		while(kmTotales>distanciaRecorrida) {
 			distanciaRecorrida += 5*(this.velocidad/60/60);
