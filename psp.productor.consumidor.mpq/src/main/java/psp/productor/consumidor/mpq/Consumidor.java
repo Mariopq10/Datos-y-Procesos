@@ -38,21 +38,29 @@ public class Consumidor extends Thread {
 		} else {
 			System.out.println("No hay " + art + " , no se ha consumido nada");
 		}
-		Thread.sleep(200);
-
+		Thread.sleep(500);
+		
 	}
 
+	public synchronized boolean existeLista() throws InterruptedException {
+		boolean ret=false;
+		if (this.buffer.getLista().size() == 0) {
+			
+			ret=true;
+		}
+		return ret;
+		
+	}
 	@Override
 	public void run() {
 
 		while (true) {
 			try {
-				Thread.sleep(2000);
-				if (this.buffer.getLista().size() == 0) {
-					wait();
-				} else {
-					get();
-				}
+				Thread.sleep(1000);
+				if (existeLista()) {}
+				
+				get();
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

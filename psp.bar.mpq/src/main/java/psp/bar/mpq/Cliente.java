@@ -46,18 +46,14 @@ public class Cliente extends Thread {
 		this.atendido = atendido;
 	}
 
-	public synchronized void pedirComanda(Camarero camarero) throws InterruptedException {
+	public synchronized void llamarCamarero(Camarero camarero) throws InterruptedException {
 		if (camarero.isAtendiendo()) {
 			System.out.println("Camarero ocupado");
-			wait();
-		} else {
-
+			//wait(1);
+		} 
 			camarero.atenderCliente(this);
 			System.out.println(this.nombre + " pide al camarero: " + this.comanda);
 
-			this.camarero.setAtendiendo(false);
-
-		}
 
 	}
 
@@ -65,7 +61,7 @@ public class Cliente extends Thread {
 	public void run() {
 		try {
 			System.out.println(this.nombre + " llama al camarero esperando a que lo atienda");
-			this.pedirComanda(this.camarero);
+			this.llamarCamarero(this.camarero);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

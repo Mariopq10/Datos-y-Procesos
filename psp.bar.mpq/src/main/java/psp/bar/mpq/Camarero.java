@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Camarero extends Thread {
 	private boolean atendiendo;
-	private ArrayList<Cliente> clientesAtendidos ;
+	private ArrayList<Cliente> clientesAtendidos;
 
 	public Camarero(boolean atendiendo, ArrayList clientesAtendidos) {
 		super();
@@ -29,18 +29,19 @@ public class Camarero extends Thread {
 	}
 
 	public synchronized void atenderCliente(Cliente cliente) throws InterruptedException {
-		
-		System.out.println("Camarero atiende a "+cliente.getNombre());
 		this.setAtendiendo(true);
+		Thread.sleep(2000);
+		System.out.println("Camarero atiende a " + cliente.getNombre());		
 		this.clientesAtendidos.add(cliente);
 		Thread.sleep(2000);
-		System.out.println("Camarero ha atendido a "+ cliente.getNombre());
-		notifyAll();
+		System.out.println("Camarero ha atendido a " + cliente.getNombre());
+		this.setAtendiendo(false);
 		
+
 	}
 
 	@Override
 	public void run() {
-	
+
 	}
 }

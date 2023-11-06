@@ -10,7 +10,7 @@ public class Main {
 		Buffer buffer = new Buffer(lista);
 		Productor productor = new Productor("Productor", buffer);
 		Consumidor consumidor = new Consumidor("Consumidor", buffer);
-		
+		System.out.println(System.getProperty("java.runtime.version"));
 		
 		productor.start();
 		consumidor.start();
