@@ -1,0 +1,6 @@
+#Fichero de configuracion
+#Thu Oct 26 12:13:57 CEST 2023
+server=variableServer
+password=variableContrasena
+port=25
+user=variableUsuario
