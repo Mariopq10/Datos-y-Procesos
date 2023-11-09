@@ -3,16 +3,17 @@
   <groupId>ad.hibernate.mpq</groupId>
   <artifactId>ad.hibernate.mpq</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
   <dependencies>
   <dependency>
-    <groupId>org.hibernate.orm</groupId>
-    <artifactId>hibernate-spatial</artifactId>
-    <version>6.3.1.Final</version>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.4.30.Final</version>
 </dependency>
 <dependency>
-    <groupId>org.hibernate.orm</groupId>
-    <artifactId>hibernate-core</artifactId>
-    <version>6.3.1.Final</version>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.23</version>
 </dependency>
 </dependencies>
 

@@ -1,29 +1,23 @@
 package ad.hibernate.mpq;
 
-import org.hibernate.annotations.*;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.hibernate.*;
-
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(appliesTo = "usuarios")
+@Table(name = "usuarios")
 public class Usuarios {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "coduser")
 	private String coduser;
-	
-	@Column(name ="nombrelogin")
+
+	@Column(name = "nombrelogin")
 	private String nombrelogin;
-	
+
 	@Column(name = "contrasena")
 	private String contrasena;
-	
+
 	@Column(name = "nombrecompleto")
 	private String nombreCompleto;
 
@@ -36,7 +30,7 @@ public class Usuarios {
 	}
 
 	public Usuarios() {
-		
+
 	}
 
 	public String getCoduser() {
