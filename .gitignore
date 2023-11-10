@@ -17,3 +17,4 @@ psp.bar.mpq/target/classes/META-INF/maven/psp.bar.mpq/psp.bar.mpq/pom.properties
 psp.filosofos.mpq/target/classes/META-INF/maven/psp.filosofos.mpq/psp.filosofos.mpq/pom.properties
 psp.transporte.mpq/target/classes/META-INF/maven/psp.transporte.mpq/psp.transporte.mpq/pom.properties
 salida.entrada.mpq/target/classes/META-INF/maven/salida.entrada.mpq/salida.entrada.mpq/pom.properties
+*.properties
