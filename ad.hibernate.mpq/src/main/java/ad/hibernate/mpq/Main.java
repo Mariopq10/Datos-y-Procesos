@@ -15,19 +15,18 @@ public class Main {
 	public static void main(String[] args) {
 
 		// Carga del fichero de configuración
-		Configuration cfg = new Configuration();
-		cfg.configure("hibernate.cfg.xml");
+		Configuration configuracion = new Configuration();
+		configuracion.configure("hibernate.cfg.xml");
 
 		// Creación de la sesión entre JAVA e Hibernate
-		SessionFactory sessionFactory = cfg.buildSessionFactory();
+		SessionFactory sessionFactory = configuracion.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		// Comienzo de la transacción SQL
 		Transaction transaction = session.beginTransaction();
 
 		//consultar(session);
-		
-		
+		//insertarUsuario(session, null, null, null);
 		
 		
 		transaction.commit();
@@ -49,5 +48,23 @@ public class Main {
 		}
 
 	}
+	
+	public static boolean insertarUsuario(Session session, String nombreLogin, String contrasena, String nombreCompleto) {
+        try {
+            // Creación de un nuevo usuario
+            Usuarios nuevoUsuario = new Usuarios();
+            nuevoUsuario.setNombrelogin(nombreLogin);
+            nuevoUsuario.setContrasena(contrasena);
+            nuevoUsuario.setNombreCompleto(nombreCompleto);
+
+            // Intenta guardar el nuevo usuario en la base de datos
+            session.save(nuevoUsuario);
+
+            return true; // Operación exitosa
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // Operación fallida
+        }
+    }
 
 }

@@ -5,9 +5,9 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://192.168.6.60:3306/ricardo</property>
-        <property name="connection.username">ricardo</property>
-     	<property name="connection.password">loveoracle</property>
+        <property name="connection.url">jdbc:mysql://192.168.6.60:3306/mario</property>
+        <property name="connection.username">mario</property>
+     	<property name="connection.password">12345</property>
 
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
