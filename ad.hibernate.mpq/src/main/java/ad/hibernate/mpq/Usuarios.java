@@ -10,10 +10,10 @@ public class Usuarios {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String coduser;
+	private Long coduser;
 
 	@Column(name = "nombrelogin")
-	private String nombrelogin;
+	private String nombreLogin;
 
 	@Column(name = "contrasena")
 	private String contrasena;
@@ -21,46 +21,29 @@ public class Usuarios {
 	@Column(name = "nombrecompleto")
 	private String nombreCompleto;
 
-	public Usuarios(String coduser, String nombrelogin, String contrasena, String nombreCompleto) {
-		super();
-		this.coduser = coduser;
-		this.nombrelogin = nombrelogin;
-		this.contrasena = contrasena;
-		this.nombreCompleto = nombreCompleto;
-	}
 
-	public Usuarios() {
 
-	}
-
-	public String getCoduser() {
+	public Long getCoduser() {
 		return coduser;
 	}
-
-	public void setCoduser(String coduser) {
+	public void setCoduser(Long coduser) {
 		this.coduser = coduser;
 	}
-
-	public String getNombrelogin() {
-		return nombrelogin;
+	public String getNombreLogin() {
+		return nombreLogin;
 	}
-
-	public void setNombrelogin(String nombrelogin) {
-		this.nombrelogin = nombrelogin;
+	public void setNombreLogin(String nombreLogin) {
+		this.nombreLogin = nombreLogin;
 	}
-
 	public String getContrasena() {
 		return contrasena;
 	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setContrasena(String password) {
+		this.contrasena = password;
 	}
-
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
-
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
