@@ -22,37 +22,39 @@ public class Main {
 			// Establezco el socket del servidor con el puerto 2002
 			ServerSocket serverSocket = new ServerSocket(puerto);
 
-			Socket socket = serverSocket.accept();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			BufferedWriter writer = new BufferedWriter(new FileWriter("archivos.txt"));
+			while (true) {
+				Socket socket = serverSocket.accept();
 
-			// Lee el archivo enviado por el cliente
-			int tamano = 0;
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println("Recibido: " + linea);
-				if (linea.length() != 0) {
-					tamano += linea.length() + 2;
-				} else if (linea.length() == 0) {
-					tamano += 2;
+				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				BufferedWriter writer = new BufferedWriter(new FileWriter("archivos.txt"));
+
+				// Lee el archivo enviado por el cliente
+				int tamano = 0;
+				String linea;
+				while ((linea = reader.readLine()) != null) {
+					System.out.println("Recibido: " + linea);
+					if (linea.length() != 0) {
+						tamano += linea.length() + 2;
+					} else if (linea.length() == 0) {
+						tamano += 2;
+					}
+					writer.write(linea);
+					writer.newLine();
 				}
-				writer.write(linea);
-				writer.newLine();
+				System.out.println("Cliente conectado desde: " + socket.getInetAddress()
+						+ " se ha transferido un total de " + tamano + " bytes");
+				System.out.println("Archivo recibido correctamente.");
+
+				// Cierra los flujos y el socket
+				reader.close();
+				writer.close();
+				socket.close();
+				serverSocket.close();
 			}
-			System.out.println("Cliente conectado desde: " + socket.getInetAddress() + " se ha transferido un total de "
-					+ tamano + " bytes");
-			System.out.println("Archivo recibido correctamente.");
-
-			// Cierra los flujos y el socket
-			reader.close();
-			writer.close();
-			socket.close();
-			serverSocket.close();
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 	}
-
 }

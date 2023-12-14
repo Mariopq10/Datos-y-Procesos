@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			String serverAddress = "0.0.0.0";
+			String serverAddress = "143.47.32.113";
 			int serverPort = 2002;
 
 			// Archivo que se va a enviar.
