@@ -13,6 +13,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+			//serverAddress guarda la ip a la cual vamos a hacer la conexion.
+			//En este caso 143.47.32.113 es la ip de mi servidor alojado en oracle.
+			//Mi servidor usa el puerto 2002.
 			String serverAddress = "143.47.32.113";
 			int serverPort = 2002;
 

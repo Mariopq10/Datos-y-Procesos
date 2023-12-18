@@ -15,7 +15,8 @@ import java.net.Socket;
 public class Main {
 
 	public static void main(String[] args) {
-
+		// En el ejercicio pone puerto 2023, en clase usabamos el 2002, se puede
+		// modificar cambiando el valor de la variable puerto.
 		int puerto = 2002;
 
 		try {
@@ -51,10 +52,10 @@ public class Main {
 				socket.close();
 				serverSocket.close();
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }
