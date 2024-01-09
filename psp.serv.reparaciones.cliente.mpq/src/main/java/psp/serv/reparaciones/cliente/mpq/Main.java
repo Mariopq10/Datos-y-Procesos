@@ -29,18 +29,15 @@ public class Main {
 		try (Connection connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD)) {
 			// Listar los partes asociados a un tecnico.
 
-			
-			
-			
 			// Listar toda la tabla
-			listarTabla(connection,2);
+			listarTabla(connection, 2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void listarTabla(Connection connection,int codigoParte) throws SQLException {
-		String sql = "SELECT * FROM partes WHERE codigo_tecnico="+codigoParte+"";
+	private static void listarTabla(Connection connection, int codigoParte) throws SQLException {
+		String sql = "SELECT * FROM partes WHERE codigo_tecnico=" + codigoParte + "";
 		try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 			while (resultSet.next()) {
