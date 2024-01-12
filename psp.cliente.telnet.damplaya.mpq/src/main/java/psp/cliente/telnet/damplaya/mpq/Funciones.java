@@ -33,7 +33,7 @@ public class Funciones {
 			String respuesta;
 			while ((respuesta = reader.readLine()) != ".") {
 				System.out.println(respuesta);
-				if (respuesta == ".") {
+				if (respuesta.equals(".")||respuesta.equals("-ERR Invalid message number.")) {
 					break;
 				}
 			}
@@ -45,18 +45,20 @@ public class Funciones {
 			writer.flush();
 
 			String respuesta2 = reader.readLine();
-			System.out.println(respuesta2);
+			int cantidadCorreos = Integer.parseInt(respuesta2.split(" ")[1]);
+            System.out.println("Cantidad de correos: " + cantidadCorreos);
+
 			break;
 		case 3:
 			System.out.println("Dime el correo que quieres leer");
 			String eleccion = sc.nextLine();
-			writer.write("retr " + eleccion + "\r\n");
+			writer.write("top " + eleccion +" 20 \r\n");
 			writer.flush();
 
 			String respuesta3;
 			while ((respuesta3 = reader.readLine()) != null) {
 				System.out.println(respuesta3);
-				if (respuesta3 == ".") {
+				if (respuesta3.equals(".")||respuesta3.equals("-ERR Invalid message number.")) {
 					break;
 				}
 			}
