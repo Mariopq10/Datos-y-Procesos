@@ -1,5 +1,7 @@
 package ad.crud.mongodb.mpq;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import org.bson.Document;
@@ -22,7 +24,7 @@ public class Main {
 		String password = sc.nextLine();
 
 		// Construye la cadena de conexión con el nombre de usuario y la contraseña
-		String connectionString = "mongodb://" + username + ":" + password + "@localhost:27017";
+		String connectionString = "mongodb://" + username + ":" + password + "@143.47.54.181:27017";
 		// Conéctate al servidor MongoDB
 		try (MongoClient mongoClient = MongoClients.create(
 				MongoClientSettings.builder().applyConnectionString(new ConnectionString(connectionString)).build())) {
@@ -51,28 +53,32 @@ public class Main {
 				System.out.println("0. Salir");
 				System.out.print("Seleccione una opción: ");
 
-				int opcion = sc.nextInt();
+				String opcion = sc.nextLine();
 				String titulo ;
 				String banda ;
-				int ano;
-				String estilosMusicales;
-				String mejoresTemas;
+				String ano;
+				List<String> estilosMusicales;
+				List<String>  mejoresTemas;
 				
-				switch (opcion) {
+				switch (Integer.parseInt(opcion)) {
 				case 1:
 					// Operación de Creación (Alta)
 					System.out.println("Opción 1 seleccionada: Crear Disco");
+					
 					System.out.println("Introduce titulo del disco: ");
 					titulo = sc.nextLine();
+					
 					System.out.println("Introduce nombre de banda: ");
 					banda = sc.nextLine();
 					System.out.println("Introduce el año: ");
-					ano = sc.nextInt();
+					ano = sc.nextLine();
+					
+					//Necesitamos crear una lista, al llamar a la funcion Arrays.asList() hacemos que la lista se castee a un Array de String
 					System.out.println("Introduce el estilo musical: ");
-					estilosMusicales = sc.nextLine();
+					estilosMusicales = Arrays.asList(sc.nextLine().split((", ")));
 					System.out.println("Introduce el mejor tema de la banda: ");
-					mejoresTemas = sc.nextLine();
-					Funciones.crearDisco(discos, titulo, banda, ano,estilosMusicales , mejoresTemas);
+					mejoresTemas = Arrays.asList(sc.nextLine().split((", ")));
+					Funciones.crearDisco(discos, titulo, banda, Integer.parseInt(ano),estilosMusicales , mejoresTemas);
 					break;
 				case 2:
 					// Operación de Lectura (Consulta de un solo disco)

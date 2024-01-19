@@ -1,6 +1,7 @@
 package ad.crud.mongodb.mpq;
 
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.bson.Document;
@@ -12,11 +13,11 @@ import com.mongodb.client.model.Updates;
 public class Funciones {
 	Scanner sc = new Scanner(System.in);
 
-	public static void crearDisco(MongoCollection<Document> collection, String titulo, String banda, int ano, String estilo, String... mejoresTemas) {
+	public static void crearDisco(MongoCollection<Document> collection, String titulo, String banda, int ano, List<String> estilosMusicales, List<String> mejoresTemas) {
 			        Document nuevoDisco = new Document("titulo", titulo)
 	                .append("banda", banda)
 	                .append("ano", ano)
-	                .append("estilo", estilo)
+	                .append("estilo", estilosMusicales)
 	                .append("mejoresTemas", mejoresTemas);
 
 	        collection.insertOne(nuevoDisco);
