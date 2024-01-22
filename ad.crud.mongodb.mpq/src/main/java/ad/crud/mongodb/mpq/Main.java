@@ -34,7 +34,7 @@ public class Main {
 			System.out.println("\nListado de bases de datos\n");
 			mongoClient.listDatabaseNames().forEach(System.out::println);
 			// Puedes realizar operaciones en la base de datos a partir de aquí
-			
+
 			MongoDatabase database = mongoClient.getDatabase("musica");
 			MongoCollection<Document> discos = database.getCollection("discos");
 			database.getCollection("musica");
@@ -42,63 +42,71 @@ public class Main {
 
 			boolean con = false;
 			while (true) {
-				System.out.println("\n*** Menú CRUD para MongoDB ***");
-				System.out.println("1. Crear Disco");
-				System.out.println("2. Consultar Disco");
-				System.out.println("3. Consultar Grupo de Discos");
-				System.out.println("4. Actualizar Campo de Disco");
-				System.out.println("5. Eliminar Disco");
-				System.out.println("6. Operación Adicional 1");
-				System.out.println("7. Operación Adicional 2");
-				System.out.println("0. Salir");
-				System.out.print("Seleccione una opción: ");
-
+				Funciones.mostrarMenu();
 				String opcion = sc.nextLine();
-				String titulo ;
-				String banda ;
+				String titulo;
+				String banda;
 				String ano;
 				List<String> estilosMusicales;
-				List<String>  mejoresTemas;
-				
+				List<String> mejoresTemas;
+
 				switch (Integer.parseInt(opcion)) {
 				case 1:
 					// Operación de Creación (Alta)
 					System.out.println("Opción 1 seleccionada: Crear Disco");
-					
+
 					System.out.println("Introduce titulo del disco: ");
 					titulo = sc.nextLine();
-					
+
 					System.out.println("Introduce nombre de banda: ");
 					banda = sc.nextLine();
 					System.out.println("Introduce el año: ");
 					ano = sc.nextLine();
-					
-					//Necesitamos crear una lista, al llamar a la funcion Arrays.asList() hacemos que la lista se castee a un Array de String
+
+					// Necesitamos crear una lista, al llamar a la funcion Arrays.asList() hacemos
+					// que la lista se castee a un Array de String
 					System.out.println("Introduce el estilo musical: ");
 					estilosMusicales = Arrays.asList(sc.nextLine().split((", ")));
 					System.out.println("Introduce el mejor tema de la banda: ");
 					mejoresTemas = Arrays.asList(sc.nextLine().split((", ")));
-					Funciones.crearDisco(discos, titulo, banda, Integer.parseInt(ano),estilosMusicales , mejoresTemas);
+					Funciones.crearDisco(discos, titulo, banda, Integer.parseInt(ano), estilosMusicales, mejoresTemas);
 					break;
 				case 2:
-					// Operación de Lectura (Consulta de un solo disco)
-					System.out.println("Opción 2 seleccionada: Consultar Disco");
-					// Llama al método consultarDisco()
+					// Consultar disco por titulo.
+					System.out.println(
+							"Opción 2 seleccionada: Consultar Disco\nIntroduce el titulo que quieres consultar:");
+					String disco = sc.nextLine();
+					// Llama al método consultarDisco().
+					Funciones.consultarDisco(discos, disco);
 					break;
 				case 3:
-					// Operación de Lectura (Consulta de un grupo de discos)
-					System.out.println("Opción 3 seleccionada: Consultar Grupo de Discos");
-					// Llama al método consultarGrupoDiscos()
+					// Consultamos discos del mismo estilo
+					System.out.println(
+							"Opción 3 seleccionada: Consultar Grupo de Discos por estilo.\nCual es el estilo que desea buscar:");
+					String estilo = sc.nextLine();
+					// Llama al metodo consultarGruposDiscos.
+					Funciones.consultarGrupoDiscos(discos, estilo);
 					break;
 				case 4:
 					// Operación de Actualización (Actualizar un campo)
-					System.out.println("Opción 4 seleccionada: Actualizar Campo de Disco");
+					System.out.println(
+							"Opción 4 seleccionada: Actualizar Campo de Disco.\nCual es el disco que desea modificar:");
+					String tituloModificar = sc.nextLine();
+					System.out.println("Cual es el campo que desea modificar y su antiguo valor?");
+					String campoModificado = sc.nextLine();
+					String antValor = sc.nextLine();
+					System.out.println("Introduce el nuevo valor del campo " + campoModificado + " :");
+					String newValor = sc.nextLine();
+
 					// Llama al método actualizarCampoDisco()
+					Funciones.actualizarCampoDisco(discos, tituloModificar, campoModificado, antValor, newValor);
 					break;
 				case 5:
 					// Operación de Eliminación (Eliminar un disco)
-					System.out.println("Opción 5 seleccionada: Eliminar Disco");
+					System.out.println("Opción 5 seleccionada: Eliminar Disco\nIntroduce el titulo del disco a eliminar:");
+					String tituloEliminar = sc.nextLine();
 					// Llama al método eliminarDisco()
+					Funciones.eliminarDisco(discos, tituloEliminar);
 					break;
 				case 6:
 					// Operación Adicional 1
