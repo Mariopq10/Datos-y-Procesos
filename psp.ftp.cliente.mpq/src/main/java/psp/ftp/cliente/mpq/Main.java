@@ -19,10 +19,9 @@ public class Main {
 			// Realizamos la conexion al servidor FTP
 			ftpCliente.connect("damplaya.hopto.org", 21);
 			ftpCliente.login("mario", "mario");
-			// activamos el modo pasivo
+			// Activacion del modo pasivo.
 			ftpCliente.enterLocalPassiveMode();
 
-			//
 			int opcion = -1;
 			while (opcion != 0) {
 				Funciones.menu();
@@ -45,9 +44,9 @@ public class Main {
 				case 3:
 					// Descargar un archivo del servidor FTP
 					try {
-						System.out.print("Insercion de archivo.\nInserte el nombre:");
+						System.out.print("Insercion de archivo.\nInserte el nombre del archivo a descargar:");
 						String archivoABajar = sc.next();
-						System.out.print("Inserte el nombre y ruta de como lo quieres llamar:");
+						System.out.print("Inserte el nombre del archivo descargado:");
 						String nuevoArchivo = sc.next();
 						Funciones.descargarFichero(ftpCliente, archivoABajar, nuevoArchivo);
 					} catch (IOException e) {
@@ -57,7 +56,7 @@ public class Main {
 				}
 			}
 
-			// Desconectar
+			// Desconexion del cliente ftp.
 			ftpCliente.logout();
 			ftpCliente.disconnect();
 

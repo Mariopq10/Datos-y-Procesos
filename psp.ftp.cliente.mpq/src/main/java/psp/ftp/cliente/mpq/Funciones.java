@@ -11,7 +11,7 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Funciones {
 
 	public static void menu() {
-		System.out.println("Menu: \n1) Listar directorio \n2) Subir un archivo \n3)bajar un fichero \n0) Salir");
+		System.out.println("1) Listar directorio \n2) Subir un archivo \n3) Descargar un fichero \n0) Salir");
 	}
 	
 	public static void listar(FTPClient ftpCliente) throws IOException {
@@ -23,7 +23,7 @@ public class Funciones {
 	public static void subirFichero(FTPClient ftpClient, File file) throws IOException {
 		try (FileInputStream fIS = new FileInputStream(file)) {
 			if (ftpClient.storeFile(file.getName(), fIS)) {
-				System.out.println("Archivo subido con éxito");
+				System.out.println("Archivo subido con exito");
 			} else {
 				System.out.println("No se pudo subir el archivo al servidor.");
 			}
@@ -33,7 +33,7 @@ public class Funciones {
 	public static void descargarFichero(FTPClient ftpClient, String remoteFileName, String localFileName) throws IOException {
 		try (FileOutputStream fOS = new FileOutputStream(localFileName)) {
 			ftpClient.retrieveFile(remoteFileName, fOS);
-			System.out.println("Archivo descargado con éxito");
+			System.out.println("Archivo descargado con exito");
 		}
 	}
 	
