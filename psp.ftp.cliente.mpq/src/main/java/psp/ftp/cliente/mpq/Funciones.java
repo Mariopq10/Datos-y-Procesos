@@ -1,5 +1,8 @@
 package psp.ftp.cliente.mpq;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -17,4 +20,21 @@ public class Funciones {
 		String[] files = ftpCliente.listNames("/home/mario");
 		System.out.println(Arrays.toString(files));
 	}
+	public static void subirFichero(FTPClient ftpClient, File file) throws IOException {
+		try (FileInputStream fIS = new FileInputStream(file)) {
+			if (ftpClient.storeFile(file.getName(), fIS)) {
+				System.out.println("Archivo subido con éxito");
+			} else {
+				System.out.println("No se pudo subir el archivo al servidor.");
+			}
+		}
+	}
+
+	public static void descargarFichero(FTPClient ftpClient, String remoteFileName, String localFileName) throws IOException {
+		try (FileOutputStream fOS = new FileOutputStream(localFileName)) {
+			ftpClient.retrieveFile(remoteFileName, fOS);
+			System.out.println("Archivo descargado con éxito");
+		}
+	}
+	
 }
