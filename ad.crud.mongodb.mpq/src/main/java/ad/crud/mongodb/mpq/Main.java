@@ -18,9 +18,11 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Ingrese el nombre de usuario: ");
+		//mariomusica
 		String username = sc.nextLine();
 
 		System.out.print("Ingrese la contraseña: ");
+		//passmusicamario
 		String password = sc.nextLine();
 
 		// Construye la cadena de conexión con el nombre de usuario y la contraseña
@@ -66,6 +68,8 @@ public class Main {
 					// Necesitamos crear una lista, al llamar a la funcion Arrays.asList() hacemos
 					// que la lista se castee a un Array de String
 					System.out.println("Introduce el estilo musical: ");
+					
+					//Aqui y en mejoresTemas, usamos el metodo split(", ") para poder poner varios estilos musicales o mejores temas.
 					estilosMusicales = Arrays.asList(sc.nextLine().split((", ")));
 					System.out.println("Introduce el mejor tema de la banda: ");
 					mejoresTemas = Arrays.asList(sc.nextLine().split((", ")));
@@ -107,16 +111,6 @@ public class Main {
 					String tituloEliminar = sc.nextLine();
 					// Llama al método eliminarDisco()
 					Funciones.eliminarDisco(discos, tituloEliminar);
-					break;
-				case 6:
-					// Operación Adicional 1
-					System.out.println("Opción 6 seleccionada: Operación Adicional 1");
-					// Llama a la primera operación adicional
-					break;
-				case 7:
-					// Operación Adicional 2
-					System.out.println("Opción 7 seleccionada: Operación Adicional 2");
-					// Llama a la segunda operación adicional
 					break;
 				case 0:
 					// Salir del programa

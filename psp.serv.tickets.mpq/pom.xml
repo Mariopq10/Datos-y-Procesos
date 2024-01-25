@@ -10,6 +10,20 @@
         <artifactId>mongodb-driver-sync</artifactId>
         <version>4.3.1</version>
     </dependency>
+    
+     <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.32</version> <!-- Utiliza la última versión disponible -->
+    </dependency>
+
+    <!-- Logback como implementación de SLF4J -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.6</version> <!-- Utiliza la última versión disponible -->
+    </dependency>
+    
 </dependencies>
   
 </project>

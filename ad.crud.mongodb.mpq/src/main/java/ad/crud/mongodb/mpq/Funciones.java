@@ -1,5 +1,6 @@
 package ad.crud.mongodb.mpq;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,13 +16,13 @@ public class Funciones {
 	public static void mostrarMenu() {
 		System.out.println("\n*** Menú CRUD para MongoDB ***\n" + "1. Crear Disco\n" + "2. Consultar Disco\n"
 				+ "3. Consultar Grupo de Discos\n" + "4. Actualizar Campo de Disco\n" + "5. Eliminar Disco\n"
-				+ "6. Operación Adicional 1\n" + "7. Operación Adicional 2\n" + "0. Salir");
+				 + "0. Salir");
 	}
 
 	public static void crearDisco(MongoCollection<Document> collection, String titulo, String banda, int ano,
-			List<String> estilosMusicales, List<String> mejoresTemas) {
+			List<String> estilos, List<String> mejoresTemas) {
 		Document nuevoDisco = new Document("titulo", titulo).append("banda", banda).append("ano", ano)
-				.append("estilo", estilosMusicales).append("mejoresTemas", mejoresTemas);
+				.append("estilos", estilos).append("mejoresTemas", mejoresTemas);
 
 		collection.insertOne(nuevoDisco);
 		System.out.println("Disco creado: " + titulo);
@@ -32,11 +33,16 @@ public class Funciones {
 		System.out.println("Consulta de un solo disco:\n" + discoEncontrado);
 	}
 
-	public static void consultarGrupoDiscos(MongoCollection<Document> collection, String estilo) {
-		// Consulta todos los discos del mismo estilo
-		System.out.println("Consulta de un grupo de discos (estilo " + estilo + "):");
-		collection.find(Filters.eq("estilo", estilo)).forEach(System.out::println);
-	}
+	 public static void consultarGrupoDiscos(MongoCollection<Document> collection, String estilo) {
+	        // Consulta todos los discos que contienen el estilo dado
+	        List<Document> discosEncontrados = collection.find(Filters.eq("estilos", estilo)).into(
+	                new ArrayList<>());
+
+	        System.out.println("Consulta de un grupo de discos (estilo " + estilo + "):");
+	        for (Document disco : discosEncontrados) {
+	            System.out.println(disco);
+	        }
+	        }
 
 	public static void actualizarCampoDisco(MongoCollection<Document> collection, String titulo, String campo,
 			String antiguoValor, String nuevoValor) {

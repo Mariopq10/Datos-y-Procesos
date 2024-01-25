@@ -15,15 +15,23 @@ public class Main {
 
 		try (Scanner sc = new Scanner(System.in)) {
 			// Conectar al servidor
+
+			/*
+			 * Descomentar el while true y el hardcode al String solicitud = "TK mario";
+			 * para realizar conexiones simultaneas y realizar comprobaciones. 
+			 */
+			// while (true){
 			Socket socket = new Socket(SERVER_IP, SERVER_PORT);
 
-			// Establecer flujos de entrada y salida
+			// Establecemos los flujos de entrada y salida
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
 			// Solicitar entrada del usuario después de conectarse al servidor
 			System.out.print("Ingrese su solicitud: ");
 			String solicitud = sc.nextLine();
+
+			// String solicitud = "TK mario";
 
 			// Enviar la solicitud al servidor
 			writer.write(solicitud + "\n");
@@ -35,6 +43,8 @@ public class Main {
 
 			// Cerrar la conexión
 			socket.close();
+			// fin del while true(eliminar comentario para pruebas)
+			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
