@@ -20,7 +20,7 @@ public class Main {
 			 * Descomentar el while true y el hardcode al String solicitud = "TK mario";
 			 * para realizar conexiones simultaneas y realizar comprobaciones. 
 			 */
-			// while (true){
+			 while (true){
 			Socket socket = new Socket(SERVER_IP, SERVER_PORT);
 
 			// Establecemos los flujos de entrada y salida
@@ -29,9 +29,9 @@ public class Main {
 
 			// Solicitar entrada del usuario después de conectarse al servidor
 			System.out.print("Ingrese su solicitud: ");
-			String solicitud = sc.nextLine();
+			//String solicitud = sc.nextLine();
 
-			// String solicitud = "TK mario";
+			 String solicitud = "TK marioaaa";
 
 			// Enviar la solicitud al servidor
 			writer.write(solicitud + "\n");
@@ -44,7 +44,7 @@ public class Main {
 			// Cerrar la conexión
 			socket.close();
 			// fin del while true(eliminar comentario para pruebas)
-			// }
+			 }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
