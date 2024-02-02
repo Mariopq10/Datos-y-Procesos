@@ -22,83 +22,45 @@ public class Main {
 		Cifrado cifrado = new Cifrado();
 		String key;
 
-//		System.out.println("Escriba el texto a encriptar");
-//		String texto = sc.nextLine();
-//
-//		try {
-//			String textoEncriptado = cifrado.encriptar(texto, "mario");
-//			System.out.println("La texto encriptado es:\n" + textoEncriptado);
-//
-//			String textoDesencriptado = cifrado.desencriptar(textoEncriptado, "mario");
-//			System.out.println("La texto desencriptado es:\n" + textoDesencriptado);
-//
-//		} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException
-//				| IllegalBlockSizeException | BadPaddingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
+		// Bucle que muestra las opciones del programa.
 		while (opcion != 0) {
 			Funciones.menu();
 			opcion = sc.nextByte();
 			sc.nextLine(); // Consumir el salto de línea después de la opción
-
-			System.out.println();
+			System.out.println();//Salto de linea.
 			switch ((byte) opcion) {
-
+			
+			//Primer caso
 			case 1:
-
-//				System.out.println("Escribe la clave");
-//				key = sc.nextLine();
-//				try {
-//					cifrado.crearClave(key);
-//					System.out.println("Clave cifrada correctamente");
-//				} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-//					e.printStackTrace();
-//				}
-
-				break;
-
-			case 2:
 				byte opcionCifrar = 0;
-				// System.out.println("Que archivo de cifrado quieres leer?\n-1)Texto
-				// cifrado.\n.2)Seleccionar archivo.");
-				// opcionCifrar = sc.nextByte();
-				// sc.nextLine();
 				try {
-//					System.out.println("Introduce la clave de cifrado.");
-//					key = sc.nextLine();
-					System.out.println("Introduce el texto a descifrar: ");
+					System.out.println("Introduce el texto a descifrar: (Introduce la cadena de texto de la opcion 2)");
 					String texto = sc.nextLine();
 
-					System.out.println(cifrado.desencriptar(texto));
+					System.out.println(cifrado.desencriptar(texto)); // Muestra la cadena de texto desencriptada.
 
 				} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException
 						| NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
 					e.printStackTrace();
 				}
-
+				
 				break;
-
-			case 3:
+				
+				//Segundo caso
+			case 2:
 				System.out.println("Escribe el texto a cifrar.");
 				textoCifrado = sc.nextLine();
-//				System.out.println("Introduce la clave de cifrado: ");
-//				key = sc.nextLine();
-
 				try {
 					System.out.println("Texto cifrado: ");
-					System.out.println(cifrado.encriptar(textoCifrado));
+					System.out.println(cifrado.encriptar(textoCifrado)); // Muestra la cadena de texto encriptada.
 				} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException
 						| NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
-
 					e.printStackTrace();
 				}
-
+				
 				break;
 			}
 		}
-
 	}
 
 }

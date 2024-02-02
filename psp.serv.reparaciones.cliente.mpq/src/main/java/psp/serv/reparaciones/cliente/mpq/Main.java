@@ -47,7 +47,6 @@ public class Main {
 				Date fecha = resultSet.getDate("fecha_parte");
 				System.out.println("Parte: " + parte + ", Descripcion: " + descripcion + ", Lugar del parte: " + lugar);
 			}
-
 		}
 	}
 }

@@ -13,7 +13,7 @@ class Tecnicos(Model):
     contrasena = CharField()
 
     class Meta:
-        database = db
+        database = 'tienda'
 
 # Definición del modelo de la tabla partes
 class Partes(Model):
@@ -25,7 +25,7 @@ class Partes(Model):
     fecha_finalizacion = DateTimeField(null=True)
 
     class Meta:
-        database = db
+        database = 'tienda'
 
 #Funcion que comprueba si la id del tecnico asignado es valido o no.
 def comprobarTecnico():

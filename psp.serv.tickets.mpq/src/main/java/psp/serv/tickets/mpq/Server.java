@@ -53,6 +53,12 @@ public class Server {
 
 					// Procesar la conexión en un hilo separado para manejar múltiples clientes simultaneos.
 					new Thread(() -> procesarConexion(socket, collection)).start();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		} catch (IOException e) {

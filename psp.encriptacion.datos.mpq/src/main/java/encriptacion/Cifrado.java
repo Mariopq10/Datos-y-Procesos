@@ -16,6 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Ejemplo de encriptado y desencriptado con algoritmo AES.
+ * Metodo Simétrico, misma clave entrada/salida.
  * 
  * @author Mario
  *
@@ -35,7 +36,14 @@ public class Cifrado {
 	public Cifrado() {
 		claveSecreta = "CifradoMario";
 	}
-
+	/**
+	 * Funcion que crea una clave de tipo SecretKeySpec mediante el metodo de encriptacion AES.
+	 * 
+	 * @param clave Es la clave secreta que se le pasa por parametros.
+	 * @return Devuelve la clave que crea usando el metodo de encriptacion AES
+	 * @throws UnsupportedEncodingException
+	 * @throws NoSuchAlgorithmException
+	 */
 	private SecretKeySpec crearClave(String clave) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		byte[] claveEncriptacion = clave.getBytes("UTF-8");
 		MessageDigest sha = MessageDigest.getInstance("SHA-1");
@@ -46,7 +54,19 @@ public class Cifrado {
 
 		return secretKey;
 	}
-
+/**
+ * Funcion encriptar() que recibe una cadena de string y mediante la secretKey que recoge de la variable interna "claveSecreta" devuelve una cadena
+ * de String encriptada.
+ * 
+ * @param datos Es una cadena de String que se le pasa por argumentos, que se encriptará posteriormente.
+ * @return Devuelve una cadena de String encriptada.
+ * @throws UnsupportedEncodingException
+ * @throws NoSuchAlgorithmException
+ * @throws InvalidKeyException
+ * @throws NoSuchPaddingException
+ * @throws IllegalBlockSizeException
+ * @throws BadPaddingException
+ */
 	public String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException,
 			InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		SecretKeySpec secretKey = this.crearClave(claveSecreta);
@@ -61,6 +81,17 @@ public class Cifrado {
 		return encriptado;
 	}
 
+	/**
+	 * Funcion que recibe por parametros una cadena de String y la desencripta.
+	 * @param datosEncriptados Cadena de String encriptada para su posterior desencriptamiento.
+	 * @return Devuelve la cadena datosEncriptados desencriptandola usando la claveSecreta.
+	 * @throws UnsupportedEncodingException
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeyException
+	 * @throws NoSuchPaddingException
+	 * @throws IllegalBlockSizeException
+	 * @throws BadPaddingException
+	 */
 	public String desencriptar(String datosEncriptados) throws UnsupportedEncodingException, NoSuchAlgorithmException,
 			InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		SecretKeySpec secretKey = this.crearClave(claveSecreta);

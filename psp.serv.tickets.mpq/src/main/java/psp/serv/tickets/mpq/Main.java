@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Server servidor = new Server(2024,10);
+		Server servidor = new Server(2024,50);
 		servidor.iniciarServidor();
 
 	}

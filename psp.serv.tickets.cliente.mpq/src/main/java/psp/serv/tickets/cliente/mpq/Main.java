@@ -31,7 +31,7 @@ public class Main {
 			System.out.print("Ingrese su solicitud: ");
 			//String solicitud = sc.nextLine();
 
-			 String solicitud = "TK marioaaa";
+			 String solicitud = "TK paquito";
 
 			// Enviar la solicitud al servidor
 			writer.write(solicitud + "\n");
