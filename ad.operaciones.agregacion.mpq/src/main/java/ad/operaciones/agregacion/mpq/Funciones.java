@@ -14,9 +14,9 @@ public class Funciones {
 		while (true) {
 			System.out.println("Elige una opcion:");
 			System.out.println("\t1. Consultar todos los clientes" + "\n\t2. Consultar un cliente\n"
-					+ "\n         [Operaciones de agregación]:\n" + "\n\t3. Cantidad de facturas de un cliente"
-					+ "\n\t4. Importe total de una factura" + "\n\t5. Total de ventas a un cliente"
-					+ "\n\t6. Productos más vendidos" + "\n\t0. Salir");
+					+ "\n         [Operaciones de agregación]:\n"
+					+ "\n\t3. Cantidad de facturas de un cliente" + "\n\t4. Importe total de una factura"
+					+ "\n\t5. Total de ventas a un cliente" + "\n\t6. Productos más vendidos" + "\n\t0. Salir");
 
 			int opcion = sc.nextInt();
 			seleccion(opcion);

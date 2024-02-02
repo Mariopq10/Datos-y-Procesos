@@ -1,11 +1,6 @@
 package ad.operaciones.agregacion.mpq;
 
 import java.io.IOException;
-import java.util.Arrays;
-
-import org.bson.Document;
-
-
 
 public class Main {
 
