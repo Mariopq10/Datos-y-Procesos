@@ -1,0 +1,24 @@
+db.createUser(
+  {
+    user: "mariomusica",
+    pwd: "passmusicamario",
+    roles: [ { role: "readWrite", db: "musica" } ]
+  }
+)
+
+db.createUser(
+  {
+    user: "mario",
+    pwd: "mongomario24",
+    roles: [ { role: "readWrite", db: "musica" } ]
+  }
+)
+
+
+
+mongodb:
+User: mario
+pass: mongomario24
+
+User: mariomusica
+pass: passmusicamario

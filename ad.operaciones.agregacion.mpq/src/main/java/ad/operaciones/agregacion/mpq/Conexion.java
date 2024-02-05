@@ -33,30 +33,31 @@ public class Conexion {
 	private static final String USERNAME = "mariofacturas";
 	private static final String PASSWORD = "mariofacturas";
 
-	// Creación de credenciales para la conexión
+	// Creacion de credenciales para la conexion
 	private static MongoCredential credential = MongoCredential.createCredential(USERNAME, DATABASE_NAME,
 			PASSWORD.toCharArray());
-	// Configuración del servidor y del cliente
+	// Configuracion del servidor y del cliente
 	private static ServerAddress serverAddress = new ServerAddress(HOST, PORT);
 	private static MongoClientSettings settings = MongoClientSettings.builder().credential(credential)
 			.applyToClusterSettings(builder -> builder.hosts(Arrays.asList(serverAddress))).build();
-	// Creación del cliente MongoDB
+	// Creacion del cliente MongoDB
 	private static MongoClient mongoClient = MongoClients.create(settings);
-	// Acceso a la base de datos y la colección
+	// Acceso a la base de datos y la coleccion
 	private static MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
 	private static MongoCollection<Document> collectionFacturasClientes = database.getCollection(COLLECTION_NAME);
 
 	static Scanner sc = new Scanner(System.in);
 
-	// Método para mostrar todos los clientes
+	// Funcion para mostrar todas las facturas.
 	public static void mostrarFacturas() {
-		System.out.println("Mostramos todas las faturas");
+		System.out.println("\tMostramos todas las faturas");
 
 		FindIterable<Document> cursor = collectionFacturasClientes.find();
 
 		try (MongoCursor<Document> cursorIterator = cursor.iterator()) {
 			while (cursorIterator.hasNext()) {
 				Document document = cursorIterator.next();
+				//Aqui llamamos a la funcion para mostrar los datos de cada factura.
 				mostrarInformacionFactura(document);
 			}
 		} catch (Exception e) {
@@ -64,7 +65,7 @@ public class Conexion {
 		}
 	}
 
-	// Método para mostrar la información de los clientes en un documento
+	// Funcion que muestra la informacion de las facturas.
 	private static void mostrarInformacionFactura(Document document) {
 		String numeroFactura = document.getString("numeroFactura");
 		String fecha = document.getString("fecha");
@@ -82,10 +83,9 @@ public class Conexion {
 				int precioUnitario = linea.getInteger("precioUnitario");
 				int cantidad = linea.getInteger("cantidad");
 
-				System.out.println("  Artículo: " + articulo);
-				System.out.println("  Precio Unitario: " + precioUnitario);
-				System.out.println("  Cantidad: " + cantidad);
-				System.out.println(); // Agregar espacio entre las líneas de factura
+				System.out.println("  Artículo: " + articulo + " - Precio Unitario: " + precioUnitario + " - Cantidad: "
+						+ cantidad + "\n");
+
 			}
 		} else {
 			System.out.println(
@@ -93,13 +93,13 @@ public class Conexion {
 		}
 	}
 
-	// Método para mostrar un cliente específico
+	// Funcion que muestra los datos de una factura.
 	public static void mostrarUnaFactura() {
-		System.out.println("Mostrar información de una Factura\n");
-		System.out.println("Ingrese el número de factura que desea mostrar (formato: '001'): ");
+		System.out.println("\tMostrar información de una Factura\n");
+		System.out.println("\tIngrese el número de factura que desea mostrar (formato: '001'): ");
 		String numeroFactura = sc.nextLine();
 
-		// Filtrar la factura con el número proporcionado
+		// Filtrar la factura con el numero proporcionado
 		Document facturaFilter = new Document("numeroFactura", numeroFactura);
 
 		FindIterable<Document> cursor = collectionFacturasClientes.find(facturaFilter);
@@ -118,10 +118,8 @@ public class Conexion {
 					System.out.println("Lineas de factura:");
 
 					for (Document linea : lineasFactura) {
-						System.out.println("  Articulo: " + linea.getString("articulo"));
-						System.out.println("  Precio Unitario: " + linea.getInteger("precioUnitario"));
-						System.out.println("  Cantidad: " + linea.getInteger("cantidad"));
-						System.out.println();
+						System.out.println("  Artículo: " + linea.getString("articulo") + " - Precio Unitario: "
+								+ linea.getInteger("precioUnitario") + " - Cantidad: " + linea.getInteger("cantidad"));
 					}
 				}
 			}
@@ -132,16 +130,15 @@ public class Conexion {
 
 	// OPERACIONES DE AGREGACION.
 
-	// Método para mostrar la cantidad de facturas de un cliente específico
+	// Funcion que muestra la cantidad de facturas de un cliente.
 	public static void cantidadFacturasCliente() {
-		System.out.println("Cantidad de Facturas asociadas a un Cliente\n");
-		System.out.println("Ingrese el nombre del cliente (formato: 'Cliente A'): ");
+		System.out.println("\tCantidad de Facturas asociadas a un Cliente\n");
+		System.out.println("\tIngrese el nombre del cliente (formato: 'Cliente A'): ");
 		String nombreCliente = sc.nextLine();
 
-		// Agregación para contar las facturas del cliente específico
+		// Agregacion para contar las facturas del cliente.
 		List<Bson> pipeline = Arrays.asList(Aggregates.match(Filters.eq("cliente", nombreCliente)),
-				Aggregates.unwind("$facturas"), Aggregates.match(Filters.eq("facturas.cliente", nombreCliente)),
-				Aggregates.group("$facturas.cliente", Accumulators.sum("numeroFactura", 1)));
+				Aggregates.group("$cliente", Accumulators.sum("numeroFactura", 1)));
 
 		// Ejecutar la agregación
 		Document result = collectionFacturasClientes.aggregate(pipeline).first();
@@ -154,20 +151,20 @@ public class Conexion {
 		}
 	}
 
-	// Método para obtener el importe total de una factura específica
+	// Funcion que obtiene el importe total de una factura especifica.
 	public static void importeTotalFactura() {
-		System.out.println("Importe Total de una Factura\n");
-		System.out.println("Ingrese el número de la Factura (formato: '001'): ");
+		System.out.println("\tImporte Total de una Factura\n");
+		System.out.println("\tIngrese el número de la Factura (formato: '001'): ");
 		String numeroFactura = sc.nextLine();
 
-		// Agregación para calcular el importe total de la factura específica
+		// Agregación para calcular el importe total de la factura especifica
 		List<Bson> pipeline = Arrays.asList(Aggregates.match(Filters.eq("numeroFactura", numeroFactura)),
 				Aggregates.unwind("$lineasFactura"),
 				Aggregates.group(null,
 						Accumulators.sum("importeTotal", new Document("$sum", Arrays.asList(new Document("$multiply",
 								Arrays.asList("$lineasFactura.precioUnitario", "$lineasFactura.cantidad")))))));
 
-		// Ejecutar la agregación
+		// Ejecutar la agregacion
 		Document result = collectionFacturasClientes.aggregate(pipeline).first();
 
 		if (result != null && result.containsKey("importeTotal")) {
@@ -179,48 +176,51 @@ public class Conexion {
 		}
 	}
 
-	// Método para mostrar el total de ventas a un cliente específico
+	// Funcion que muestra el total de ventas asociadas a un cliente.
 	public static void totalVentasCliente() {
-		System.out.println("[Total de Ventas a un Cliente]");
-		System.out.println("Ingrese el ID del Cliente (formato: 'C1001'): ");
-		String idCliente = sc.nextLine();
+		System.out.println("\tTotal de ventas asignadas a un Cliente\n");
+		System.out.println("\tIngrese el nombre del Cliente (formato: 'Cliente A'): ");
+		String nombreCliente = sc.nextLine();
 
-		// Agregación para calcular el total de ventas al cliente específico
-		List<Bson> pipeline = Arrays
-				.asList(Aggregates.match(Filters.eq("clientes.id_cliente", idCliente)), Aggregates.unwind("$facturas"),
-						Aggregates.match(Filters.eq("facturas.id_cliente", idCliente)),
-						Aggregates.unwind("$facturas.lineas_factura"),
-						Aggregates.group(null,
-								Accumulators.sum("totalVentas",
-										new Document("$sum", Arrays.asList(
-												new Document("$toDouble", "$facturas.lineas_factura.precio_unitario"),
-												new Document("$toDouble", "$facturas.lineas_factura.cantidad"))))));
+		// Agregacion para calcular el total de ventas de un cliente especificado.
+		List<Bson> pipeline = Arrays.asList(Aggregates.match(Filters.eq("cliente", nombreCliente)),
+				Aggregates.unwind("$lineasFactura"),
+				Aggregates.group(null,
+						Accumulators.sum("totalVentas",
+								new Document("$sum",
+										Arrays.asList(
+												new Document("$multiply",
+														Arrays.asList("$lineasFactura.precioUnitario",
+																"$lineasFactura.cantidad")),
+												new Document("$toInt", "$lineasFactura.cantidad"))))));
 
-		// Ejecutar la agregación
+		// Si queremos coger decimales de esta operacion, debemos cambiar el "$toInt" a
+		// "$toDouble"
+		// Sirve tanto para esta funcion como para cualquier otra, tambien tenemos que
+		// cambiar el tipo de dato que muestra por consola
+		// En la variable "totalVentas".
+
+		// Ejecutamos la agregación
 		Document result = collectionFacturasClientes.aggregate(pipeline).first();
 
 		if (result != null && result.containsKey("totalVentas")) {
-			double totalVentas = result.getDouble("totalVentas");
-			System.out.println("El total de ventas al cliente " + idCliente + " es: $" + totalVentas + "\n");
+			int totalVentas = result.getInteger("totalVentas");
+			System.out.println("El total de ventas asociadas a " + nombreCliente + " es: $" + totalVentas + "\n");
 		} else {
-			System.out.println("No se encontró el cliente con ID: " + idCliente);
+			System.out.println("No se encontró el cliente con nombre: " + nombreCliente);
 		}
 	}
 
-	// Método para mostrar los productos más vendidos
+	// Funcion que muestra los 3 productos mas vendidos.
 	public static void productosMasVendidos() {
-		System.out.println("[Productos Más Vendidos]");
+		System.out.println("\tListado con los 3 productos mas vendidos de nuestra base de datos:\n");
 
-		// Agregación para calcular los productos más vendidos
-		List<Bson> pipeline = Arrays.asList(Aggregates.unwind("$facturas"),
-				Aggregates.unwind("$facturas.lineas_factura"),
-				Aggregates.group("$facturas.lineas_factura.articulo",
-						Accumulators.sum("totalVendido", "$facturas.lineas_factura.cantidad")),
-				Aggregates.sort(Sorts.descending("totalVendido")), Aggregates.limit(3) // sólo muestra los 3 más
-																						// vendidos
-		);
-
-		// Ejecutar la agregación
+		// Agregación para calcular los productos mas vendidos
+		List<Bson> pipeline = Arrays.asList(Aggregates.unwind("$lineasFactura"),
+				Aggregates.group("$lineasFactura.articulo",
+						Accumulators.sum("totalVendido", "$lineasFactura.cantidad")),
+				Aggregates.sort(Sorts.descending("totalVendido")), Aggregates.limit(3));
+		// Ejecutar la agregacion
 		AggregateIterable<Document> results = collectionFacturasClientes.aggregate(pipeline);
 
 		// Mostrar los resultados
