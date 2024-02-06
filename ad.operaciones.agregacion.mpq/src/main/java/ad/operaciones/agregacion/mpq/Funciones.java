@@ -13,10 +13,10 @@ public class Funciones {
 
 		while (true) {
 			System.out.println("Elige una opcion:");
-			System.out.println("\t1. Consultar todos los clientes" + "\n\t2. Consultar un cliente\n"
-					+ "\n         [Operaciones de agregación]:\n"
+			System.out.println("\t1. Consultar todas las facturas" + "\n\t2. Consultar una factura.\n"
+					+ "\n         Operaciones de agregación:\n"
 					+ "\n\t3. Cantidad de facturas de un cliente" + "\n\t4. Importe total de una factura"
-					+ "\n\t5. Total de ventas a un cliente" + "\n\t6. Productos más vendidos" + "\n\t0. Salir");
+					+ "\n\t5. Total de ventas a un cliente" + "\n\t6. Productos mas vendidos" + "\n\t0. Salir");
 
 			int opcion = sc.nextInt();
 			seleccion(opcion);
@@ -26,10 +26,11 @@ public class Funciones {
 	public static void seleccion(int opcion) throws IOException {
 		Scanner sc = new Scanner(System.in);
 		switch (opcion) {
+		//Mostrar todas las facturas
 		case 1:
 			Conexion.mostrarFacturas();
 			break;
-		// Consultar un cliente
+		// Consultar una factura
 		case 2:
 			Conexion.mostrarUnaFactura();
 			break;
@@ -45,7 +46,7 @@ public class Funciones {
 		case 5:
 			Conexion.totalVentasCliente();
 			break;
-		// Productos más vendidos
+		// Productos mas vendidos
 		case 6:
 			Conexion.productosMasVendidos();
 			break;
