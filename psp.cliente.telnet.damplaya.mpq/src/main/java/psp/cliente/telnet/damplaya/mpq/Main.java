@@ -2,26 +2,27 @@ package psp.cliente.telnet.damplaya.mpq;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.Scanner;
+
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String serverAddress = "damplaya.hopto.org";
-		int serverPort = 110;
+		int serverPort = 995;
 
 		// Crea un socket de cliente para conectarse al servidor.
-		Socket socket;
+
+		SSLSocket socket;
 		try {
-			socket = new Socket(serverAddress, serverPort);
+			SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+			socket = (SSLSocket) sslSocketFactory.createSocket(serverAddress, serverPort);
 
 			// Establece flujos de entrada y salida de datos.
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -60,7 +61,6 @@ public class Main {
 				System.out.println("Que desea hacer");
 
 				Funciones.displayMenu(reader, writer);
-
 
 			} else {
 				System.out.println("Conexion erronea");

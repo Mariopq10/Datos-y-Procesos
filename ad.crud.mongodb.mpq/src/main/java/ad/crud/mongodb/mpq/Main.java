@@ -26,7 +26,7 @@ public class Main {
 		String password = sc.nextLine();
 
 		// Construye la cadena de conexión con el nombre de usuario y la contraseña
-		String connectionString = "mongodb://" + username + ":" + password + "@143.47.54.181:27017";
+		String connectionString = "mongodb://" + username + ":" + password + "@143.47.54.181:27017/?tls=true&tlsInsecure=true";
 		// Conéctate al servidor MongoDB
 		try (MongoClient mongoClient = MongoClients.create(
 				MongoClientSettings.builder().applyConnectionString(new ConnectionString(connectionString)).build())) {
