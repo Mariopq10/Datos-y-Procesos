@@ -7,39 +7,47 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
 
 public class Main {
 
-		public static void main(String[] args) {
-			Scanner scanner = new Scanner(System.in);
-			
-	        System.out.print("Ingrese el nombre de usuario: ");
-	        String username = scanner.nextLine();
-	        
-	        System.out.print("Ingrese la contraseña: ");
-	        String password = scanner.nextLine();
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 
-	        // Construye la cadena de conexión con el nombre de usuario y la contraseña
-	        String connectionString = "mongodb://" + username + ":" + password + "@143.47.54.181:27017/?tls=true&tlsInsecure=true";
-			// Conéctate al servidor MongoDB
-	        try (MongoClient mongoClient = MongoClients.create(
-	                MongoClientSettings.builder().applyConnectionString(new ConnectionString(connectionString)).build())) {
+		System.out.print("Ingrese el nombre de usuario: ");
+		String username = scanner.nextLine();
 
-	            // Conexión exitosa
-	            System.out.println("Conexión exitosa a MongoDB");
+		System.out.print("Ingrese la contraseña: ");
+		String password = scanner.nextLine();
 
-	            // Puedes realizar operaciones en la base de datos a partir de aquí
-	            MongoDatabase database = mongoClient.getDatabase("facturas");
-	            System.out.println("Conectado a la base de datos: " + database.getName());
+		// Construye la cadena de conexión con el nombre de usuario y la contraseña
+		String connectionString = "mongodb://" + username + ":" + password
+				+ "@143.47.54.181:27017/?tls=true&tlsAllowInvalidCertificates=true";
+		// Conéctate al servidor MongoDB
+		try (MongoClient mongoClient = MongoClients.create(
+				MongoClientSettings.builder().applyConnectionString(new ConnectionString(connectionString)).build())) {
 
-	            // Realiza operaciones en la base de datos...
+			// Conexión exitosa
+			System.out.println("Conexión exitosa a MongoDB");
 
-	        } catch (Exception e) {
-	            System.err.println("Error al conectar a MongoDB: " + e.getMessage());
-	        } finally {
-	            // Cierra el scanner
-	            scanner.close();
-	        }
-	    }
+			// Puedes realizar operaciones en la base de datos a partir de aquí
+			MongoDatabase database = mongoClient.getDatabase("facturas");
+			System.out.println("Conectado a la base de datos: " + database.getName());
 
+			MongoIterable<String> collectionNames = database.listCollectionNames();
+			System.out.println("Colecciones en la base de datos:");
+
+			// Iterar sobre las colecciones
+			for (String collectionName : collectionNames) {
+				System.out.println(collectionName);
+			}
+
+		} catch (Exception e) {
+			System.err.println("Error al conectar a MongoDB: " + e.getMessage());
+		} finally {
+			// Cierra el scanner
+			scanner.close();
+		}
 	}
+
+}

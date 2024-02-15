@@ -1,0 +1,36 @@
+2024-02-15 20:08:06,877 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:08:06,877 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:08:06,877 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:12,028 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:12,028 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:12,028 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:14,604 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:14,604 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:14,604 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:16,108 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:16,108 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:16,108 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:17,804 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:17,804 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:17,804 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:20,972 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:20,972 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:20,972 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:22,797 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:22,797 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:22,797 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:26,380 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:26,380 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:26,380 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:28,860 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:28,860 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:28,860 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:09:30,284 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:09:30,284 - MainThread - MainProcess - DEBUG - Numero recibido.
+2024-02-15 20:09:30,284 - MainThread - MainProcess - INFO - Usuario adivina el numero.
+2024-02-15 20:12:15,084 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:12:15,084 - MainThread - MainProcess - DEBUG - Cliente conectado, numero recibido correctamente.
+2024-02-15 20:12:15,084 - MainThread - MainProcess - INFO - Usuario no adivino el numero.
+2024-02-15 20:12:16,509 - MainThread - MainProcess - DEBUG - El servidor esperando al numero
+2024-02-15 20:12:16,509 - MainThread - MainProcess - DEBUG - Cliente conectado, numero recibido correctamente.
+2024-02-15 20:12:16,509 - MainThread - MainProcess - INFO - Usuario adivina el numero.
