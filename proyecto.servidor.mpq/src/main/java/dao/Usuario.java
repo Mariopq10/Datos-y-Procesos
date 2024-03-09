@@ -3,14 +3,13 @@ package dao;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "usuarios")
 
 	public class Usuario {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "id_cliente")
-		private int idCliente;
+		@Column(name = "id_usuario")
+		private int idUsuario;
 
 		@Column(name = "password")
 		private String password;
@@ -24,7 +23,7 @@ public class Cliente {
 
 		// Constructor con todos los campos
 		public Usuario(int idUsuario, String nombre, String pass, String apellido) {
-			this.idCliente = idUsuario;
+			this.idUsuario = idUsuario;
 			this.nombre = nombre;
 			this.password = pass;
 			this.apellido = apellido;
@@ -38,11 +37,11 @@ public class Cliente {
 
 		// Getters y setters
 		public int getIdUsuario() {
-			return idCliente;
+			return idUsuario;
 		}
 
 		public void setIdUsuario(int idUsuario) {
-			this.idCliente = idUsuario;
+			this.idUsuario = idUsuario;
 		}
 
 		public String getNombre() {
@@ -63,4 +62,4 @@ public class Cliente {
 
 
 	}
-}
+

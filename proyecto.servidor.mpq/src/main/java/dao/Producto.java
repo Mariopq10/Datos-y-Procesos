@@ -18,17 +18,22 @@ public class Producto {
 
 	@Column(name = "cantidad")
 	private int cantidad;
+	
+	@Column(name = "seccion")
+	private int seccion;
 
 	/**
 	 * 
 	 * @param idComida
 	 * @param nombre
 	 * @param cantidad
+	 *  @param seccion
 	 */
-	public Producto(int idProducto, String nombre, int cantidad) {
+	public Producto(int idProducto, String nombre, int cantidad,int seccion) {
 		this.idProducto = idProducto;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
+		this.seccion = seccion;
 	}
 
 	/**
@@ -36,9 +41,10 @@ public class Producto {
 	 * @param nombre
 	 * @param cantidad
 	 */
-	public Producto(String nombre, int cantidad) {
+	public Producto(String nombre, int cantidad, int seccion) {
 		this.nombre = nombre;
 		this.cantidad = cantidad;
+		this.seccion = seccion;
 	}
 
 	// Getters y Setters
@@ -64,5 +70,13 @@ public class Producto {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public int getSeccion() {
+		return seccion;
+	}
+
+	public void setSeccion(int seccion) {
+		this.seccion = seccion;
 	}
 }

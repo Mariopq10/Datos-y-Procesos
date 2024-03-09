@@ -19,7 +19,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version> <!-- Utiliza la versión más reciente del controlador MySQL -->
         </dependency>
-    </dependencies>
+
+        <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.28</version> <!-- Cambia esto si necesitas una versión diferente -->
+</dependency>
+   </dependencies>
   
   
   
