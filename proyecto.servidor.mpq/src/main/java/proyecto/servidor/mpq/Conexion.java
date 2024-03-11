@@ -65,6 +65,7 @@ public class Conexion {
 	}
 
 	private void procesarConexion(Socket socket, Connection connection) {
+		
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
@@ -141,6 +142,7 @@ public class Conexion {
 				writer.newLine();
 				writer.flush();
 				String password = reader.readLine();
+				System.out.println(Md5.cifrarConMD5(password));
 
 				// Verificar credenciales en la base de datos
 				if (verificarCredenciales(username, Md5.cifrarConMD5(password), connection)) {
