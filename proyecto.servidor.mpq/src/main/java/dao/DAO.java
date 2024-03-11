@@ -78,6 +78,19 @@ public class DAO {
 			writer.write("Dime el nombre del producto que deseas agregar\n");
 			writer.flush();
 			String nombre = reader.readLine();
+			
+			String query = "SELECT COUNT(*) FROM producto WHERE nombre = ?";
+	        try (PreparedStatement countStatement = connection.prepareStatement(query)) {
+	            countStatement.setString(1, nombre);
+	            try (ResultSet resultSet = countStatement.executeQuery()) {
+	                if (resultSet.next() && resultSet.getInt(1) > 0) {
+	                    writer.write("El producto ya existe en el inventario.\n");
+	                    writer.flush();
+	                    return; // Salir del método si el producto ya existe
+	                }
+	            }
+	        }
+	        
 			writer.write("Dime la cantidad del producto que deseas agregar\n");
 			writer.flush();
 			int cantidad = 0;
@@ -92,6 +105,7 @@ public class DAO {
 				// Manejar el caso en que el usuario ingresa algo que no es un número entero
 				writer.write("Error: Por favor, ingresa un número entero válido.\n");
 				writer.flush();
+				return;
 			}
 
 			String sql = "INSERT INTO producto (nombre, cantidad, seccion) VALUES (?, ?, ?)";
